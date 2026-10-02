@@ -13,7 +13,7 @@ import { ServerUrl } from '../App';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserData } from '../redux/userSlice';
 function Step1SetUp({ onStart }) {
-    const {userData}= useSelector((state)=>state.user)
+    const { userData } = useSelector((state) => state.user)
     const dispatch = useDispatch()
     const [role, setRole] = useState("");
     const [experience, setExperience] = useState("");
@@ -57,13 +57,13 @@ function Step1SetUp({ onStart }) {
     const handleStart = async () => {
         setLoading(true)
         try {
-           const result = await axios.post(ServerUrl + "/api/interview/generate-questions" , {role, experience, mode , resumeText, projects, skills } , {withCredentials:true}) 
-           console.log(result.data)
-           if(userData){
-            dispatch(setUserData({...userData , credits:result.data.creditsLeft}))
-           }
-           setLoading(false)
-           onStart(result.data)
+            const result = await axios.post(ServerUrl + "/api/interview/generate-questions", { role, experience, mode, resumeText, projects, skills }, { withCredentials: true })
+            console.log(result.data)
+            if (userData) {
+                dispatch(setUserData({ ...userData, credits: result.data.creditsLeft }))
+            }
+            setLoading(false)
+            onStart(result.data)
 
         } catch (error) {
             console.log(error)
@@ -99,15 +99,15 @@ function Step1SetUp({ onStart }) {
                         {
                             [
                                 {
-                                    icon: <FaUserTie className="text-green-600 text-xl" />,
+                                    icon: <FaUserTie className="text-blue-600 text-xl" />,
                                     text: "Choose Role & Experience",
                                 },
                                 {
-                                    icon: <FaMicrophoneAlt className="text-green-600 text-xl" />,
+                                    icon: <FaMicrophoneAlt className="text-blue-600 text-xl" />,
                                     text: "Smart Voice Interview",
                                 },
                                 {
-                                    icon: <FaChartLine className="text-green-600 text-xl" />,
+                                    icon: <FaChartLine className="text-blue-600 text-xl" />,
                                     text: "Performance Analytics",
                                 },
                             ].map((item, index) => (
@@ -177,9 +177,9 @@ function Step1SetUp({ onStart }) {
                             <motion.div
                                 whileHover={{ scale: 1.02 }}
                                 onClick={() => document.getElementById("resumeUpload").click()}
-                                className='border-2 border-dashed border-gray-300 rounded-xl p-8 text-center cursor-pointer hover:border-green-500 hover:bg-green-50 transition'>
+                                className='border-2 border-dashed border-gray-300 rounded-xl p-8 text-center cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition'>
 
-                                <FaFileUpload className='text-4xl mx-auto text-green-600 mb-3' />
+                                <FaFileUpload className='text-4xl mx-auto text-blue-600 mb-3' />
 
                                 <input type="file"
                                     accept="application/pdf"
@@ -239,7 +239,7 @@ function Step1SetUp({ onStart }) {
 
                                         <div className='flex flex-wrap gap-2'>
                                             {skills.map((s, i) => (
-                                                <span key={i} className='bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm'>{s}</span>
+                                                <span key={i} className='bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm'>{s}</span>
                                             ))}
                                         </div>
                                     </div>
@@ -250,12 +250,12 @@ function Step1SetUp({ onStart }) {
 
 
                         <motion.button
-                        onClick={handleStart}
+                            onClick={handleStart}
                             disabled={!role || !experience || loading}
                             whileHover={{ scale: 1.03 }}
                             whileTap={{ scale: 0.95 }}
-                            className='w-full disabled:bg-gray-600 bg-green-600 hover:bg-green-700 text-white py-3 rounded-full text-lg font-semibold transition duration-300 shadow-md'>
-                            {loading ? "Staring...":"Start Interview"}
+                            className='w-full disabled:bg-gray-600 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-full text-lg font-semibold transition duration-300 shadow-md'>
+                            {loading ? "Staring..." : "Start Interview"}
 
 
                         </motion.button>
