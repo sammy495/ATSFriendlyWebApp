@@ -73,8 +73,7 @@ function Auth({ isModel = false }) {
                 <div className='absolute top-0 left-0 right-0  h-1.5 bg-gradient-to-r from-[#2563EB] via-sky-400 to-[#1D4ED8]'></div>
 
                 {/* corner glow */}
-                <div className='z-50pointer-events-none absolute -top-20 -right-20 w-48 h-48 rounded-full bg-sky-200/60 blur-3xl'></div>
-
+                <div className='pointer-events-none absolute -top-20 -right-20 w-48 h-48 rounded-full bg-sky-200/60 blur-3xl'></div>
                 {/* LOGO */}
                 <div className='relative flex items-center justify-center gap-3 mb-6'>
                     <motion.div
