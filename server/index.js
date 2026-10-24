@@ -2,6 +2,7 @@ import express from "express"
 import dotenv from "dotenv"
 import connectDb from "./config/connectDb.js"
 import cookieParser from "cookie-parser"
+import multer from "multer"
 dotenv.config()
 import cors from "cors"
 import authRouter from "./routes/auth.route.js"
@@ -22,6 +23,24 @@ app.use("/api/auth" , authRouter)
 app.use("/api/user", userRouter)
 app.use("/api/interview" , interviewRouter)
 app.use("/api/payment" , paymentRouter)
+
+app.use((err, _req, res, next) => {
+    if (err instanceof multer.MulterError) {
+        if (err.code === "LIMIT_FILE_SIZE") {
+            return res.status(413).json({
+                error: "File too large",
+                code: err.code
+            })
+        }
+
+        return res.status(400).json({
+            error: err.message,
+            code: err.code
+        })
+    }
+
+    next(err)
+})
 
 const PORT = process.env.PORT || 6000
 app.listen(PORT , ()=>{
